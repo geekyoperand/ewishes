@@ -1,15 +1,22 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-
+const geoip = require("geoip-lite");
+const UserService = require("../services/user");
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  let name = req.query.n || "[Your_NAME]"
-  res.render('index', { name : name });
-});
-
-router.get('/test', function(req, res, next) {
-  let name = req.query.n || "[Your_NAME]"
-  res.render('test', { name : name });
+router.get("/", async (req, res, next) => {
+  const ipAddress = req.headers["ip-address"];
+  const geo = (await geoip.lookup(ipAddress)) || {};
+  const { city, country, region, timezone } = geo;
+  let name = req.query.n || "[Your_NAME]";
+  UserService.newUser({
+    city,
+    country,
+    region,
+    timezone,
+    ipAddress,
+    name
+  });
+  res.render("index", { name: name });
 });
 
 module.exports = router;
