@@ -4,7 +4,10 @@ const geoip = require("geoip-lite");
 const UserService = require("../services/user");
 /* GET home page. */
 router.get("/", async (req, res, next) => {
-  const ipAddress = req.headers["ip-address"];
+  const ipAddress =
+    req.headers["ip-address"] ||
+    req.headers["x-forwarded-for"] ||
+    req.connection.remoteAddress;
   const geo = (await geoip.lookup(ipAddress)) || {};
   const { city, country, region, timezone } = geo;
   let name = req.query.n || "[Your_NAME]";
