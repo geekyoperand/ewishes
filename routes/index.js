@@ -8,7 +8,7 @@ router.get("/", async (req, res, next) => {
   const geo = (await geoip.lookup(ipAddress)) || {};
   const { city, country, region, timezone } = geo;
   let name = req.query.n || "[Your_NAME]";
-  UserService.newUser({
+  await UserService.newUser({
     city,
     country,
     region,
