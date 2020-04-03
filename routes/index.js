@@ -15,10 +15,12 @@ router.get("/", async (req, res, next) => {
       console.log("Error: ", err.message);
     }
     let name = req.query.n || "[Your_NAME]";
-    await VisitReportsService.newReport({
-      name,
-      ...data
-    });
+    if (ipAddress !== "::1") {
+      await VisitReportsService.newReport({
+        name,
+        ...data
+      });
+    }
     res.render("index", { name: name });
   });
 });

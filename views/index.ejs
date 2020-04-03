@@ -118,16 +118,35 @@
   <input class="animated pulse infinite" type="name" required="" maxlength="50" name="n" id="sharename" placeholder="👉नाम लिखें और आप आपनी शपथ ले....">
   <a href="" id="whatsapp-share" title="Share on whatsapp"><button onclick="whatsappShare()" class="btn animated shake infinite" ><span>👉 </span> भेजें </button></a>
 </div>
+
 <script>
+  
   function whatsappShare() {
     const name = document.getElementById('sharename').value || 'आपके दोस्त';
     const anchor = document.getElementById('whatsapp-share');
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '/user');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify({ name }));
+    xhr.onload = function() {
+      console.log(`Loaded: ${xhr.status} ${xhr.response}`);
+    };
+
+    xhr.onerror = function() {
+      console.log(`Network Error`);
+    };
+
+    xhr.onprogress = function(event) { // triggers periodically
+      console.log(`Received ${event.loaded} of ${event.total}`);
+    };
+
     const parsedName = name.split(' ').join('%2520');
     const link = `https://ewishes.herokuapp.com/?n=${parsedName}`
     let text = `whatsapp://send?text=*${name}* ने आपके लिए कुछ भेजा है%0aइस ब्लू लाइन को टच करके जल्दी देखो%0a💥 🔥 😱 😱 👇 👇%0a${link}%0aकोरोना से बचे क्यूंकी%0a*सुरक्षा जीवन का अर्थ है*%0a*सुरक्षा के बीना सब व्यर्थ है*`; 
     anchor.href = text.split(' ').join('%20');
     
   }
+
 </script>  
 <script>
 var myIndex = 0;
