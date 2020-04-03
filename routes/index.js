@@ -37,18 +37,21 @@ router.post("/user", async (req, res, next) => {
     await UserService.newUser({
       name,
       ...data
-    }).then(()=> {
-      return res.json({
-      success: true,
-      msg: "User created successfully"
     })
-  }).catch(err => {
-    console.log("Error: ",err.message);
-    return res.json({
-      success: false,
-      err: "Something went wrong"
-    })
-  })
+      .then(() => {
+        return res.json({
+          success: true,
+          msg: "User created successfully"
+        });
+      })
+      .catch(err => {
+        console.log("Error: ", err.message);
+        return res.json({
+          success: false,
+          err: "Something went wrong"
+        });
+      });
+  });
 });
 
 module.exports = router;

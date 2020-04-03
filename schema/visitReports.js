@@ -9,7 +9,8 @@ var VisitReportsSchema = new mongoose.Schema({
   loc: { type: String },
   hostname: { type: String },
   org: { type: String },
-  postal: { type: String }
+  postal: { type: String },
+  createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("VisitReports", VisitReportsSchema);
