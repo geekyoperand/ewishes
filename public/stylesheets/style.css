@@ -427,3 +427,53 @@ transform-style:preserve-3d;
 h1 {
 animation:glow 10s ease-in-out infinite;
 }
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: orange;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+.overlay-left {
+  left: 0;
+  border-right: 3px solid brown;
+}
+.overlay-right {
+  right: 0;
+  border-left: 3px solid brown;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+#myNav-left,#myNav-right {
+  width: 50%;
+}
+
+.handle {
+  top: 49%;
+  width: 50px;
+  height: 10px;
+  background: red;
+  position: absolute;
+}
+.handle-left {
+  right: 10;
+}
+.handle-right {
+  left: 10;
+}

@@ -12,7 +12,14 @@
   <script data-ad-client="ca-pub-4179074140543931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
   
-<body onload="playSound()">
+<body onload="playSound()" onclick="toggleNav()">
+
+<div id="myNav-left" class="overlay overlay-left">
+  <div class="handle handle-left"></div>
+</div>
+<div id="myNav-right" class="overlay overlay-right">
+  <div class="handle handle-right"></div>
+</div>
   <script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
 <script>
 function playSound() {
@@ -182,6 +189,13 @@ function carousel() {
   if (myIndex > x.length) {myIndex = 1}    
   x[myIndex-1].style.display = "block";  
   setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+
+
+function toggleNav() {
+  let width = document.getElementById("myNav-left").style.width;
+  document.getElementById("myNav-left").style.width = width == "0%" ? "50%" : "0%";
+  document.getElementById("myNav-right").style.width = width == "0%" ? "50%" : "0%";
 }
 </script>
 
