@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/stylesheets/hastag.css">
   <link rel="stylesheet" href="/stylesheets/animate.min.css">
   <script data-ad-client="ca-pub-4179074140543931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  </head>
+</head>
   
 <body>
 <marquee class="m1" behavior="scroll" direction="up" scrolldelay="0"> <br>
@@ -114,12 +114,22 @@
     </h6>
   </div>
   <center><img  src="/images/points_corona.png" style="width: 100%; height: 100%; padding-left: 12px; padding-top: 20px;"></center>
-<form method="POST" action="http://jaldi-dekho.co/ready.php">
 <div class="enter-name">
-  <input class="animated pulse infinite" type="name" required="" maxlength="50" name="n" placeholder="👉आप आपनी शपथ ले....">
-  <button class="btn animated shake infinite" type="submit"><span>👉 </span> देखें </button>
+  <input class="animated pulse infinite" type="name" required="" maxlength="50" name="n" id="sharename" placeholder="👉नाम लिखें और आप आपनी शपथ ले....">
+  <a href="" id="whatsapp-share" title="Share on whatsapp"><button onclick="whatsappShare()" class="btn animated shake infinite" ><span>👉 </span> भेजें </button></a>
 </div>
-</form>
+<script>
+  function whatsappShare() {
+    const name = document.getElementById('sharename').value || 'आपके दोस्त';
+    const anchor = document.getElementById('whatsapp-share');
+    const parsedName = name.split(' ').join('%2520');
+    const link = `https://ewishes.herokuapp.com/?n=${parsedName}`
+    let text = `whatsapp://send?text=*${name}* ने आपके लिए कुछ भेजा है.इस ब्लू लाइन को टच करके जल्दी देखो.💥 🔥 😱 😱 👇 👇.${link}.कोरोना से बचे क्यूंकी.सुरक्षा जीवन का अर्थ है.सुरक्षा के बीना सब व्यर्थ है`; 
+    text = text.split(' ').join('%20');
+    anchor.href = text.split('.').  join('%0a');
+    
+  }
+</script>  
 <script>
 var myIndex = 0;
 carousel();
