@@ -11,7 +11,10 @@
   <script data-ad-client="ca-pub-4179074140543931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
   
-<body>
+<body onload="playSound()">
+  <audio id="audioId" style="display:none;" controls autoplay="true">
+    <source  src="/music/corona.mp3" type="audio/mpeg">
+  </audio>
 <marquee class="m1" behavior="scroll" direction="up" scrolldelay="0"> <br>
 <img src="/images/corona.webp" height="30px" width="30px"><br><br>
 <img src="/images/corona.webp" height="30px" width="30px"><br><br>
@@ -75,8 +78,6 @@
   <h1 id="hashtag"  style="font-family:SF Espresso Shack;font-size: 1.6em;">#IndiaFightsCorona</h1>
   <h3 class="fromMessage" id="fromMessage"></h3>
   <br>
-  <br>
-  <br>
 <div class="sandbox sandbox-correct-pronounciation">
   <h6 class="heading heading-correct-pronounciation">
     <em style="color:blueviolet;height: 20px;">मैं</em>
@@ -115,7 +116,7 @@
   </div>
   <center><img  src="/images/points_corona.png" style="width: 100%; height: 100%; padding-left: 12px; padding-top: 20px;"></center>
 <div class="enter-name">
-  <input class="animated pulse infinite" type="name" required="" maxlength="50" name="n" id="sharename" placeholder="👉नाम लिखें और आप आपनी शपथ ले....">
+  <input class="animated pulse infinite" type="name" required="" maxlength="50" name="n" id="sharename" placeholder="👉नाम लिखें और आपनी शपथ ले....">
   <a href="" id="whatsapp-share" title="Share on whatsapp"><button onclick="whatsappShare()" class="btn animated shake infinite" ><span>👉 </span> भेजें </button></a>
 </div>
 
@@ -162,6 +163,12 @@ function carousel() {
   if (myIndex > x.length) {myIndex = 1}    
   x[myIndex-1].style.display = "block";  
   setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+function playSound() {
+  let sound = document.getElementById("audioId");
+  sound.currentTime = 0;
+  sound.loop = true; //if you want it to restart playing automatically when it ends
+  sound.play();
 }
 </script>
 
