@@ -8,13 +8,29 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" href="/stylesheets/hastag.css">
   <link rel="stylesheet" href="/stylesheets/animate.min.css">
+  <script src=" "></script>
   <script data-ad-client="ca-pub-4179074140543931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
   
 <body onload="playSound()">
-  <audio id="audioId" style="display:none;" controls autoplay="true">
-    <source  src="/music/corona.mp3" type="audio/mpeg">
-  </audio>
+  <script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
+<script>
+function playSound() {
+  if (!createjs.Sound.initializeDefaultPlugins()) {return;}
+ 
+ var audioPath = "music/";
+ var sounds = [
+     {id:"Music", src:"corona.mp3"}
+ ];
+
+ createjs.Sound.alternateExtensions = ["mp3"];
+ createjs.Sound.addEventListener("fileload", handleLoad);
+ createjs.Sound.registerSound({src:"music/corona.mp3", id:"sound"});
+}
+function handleLoad(event) {
+    createjs.Sound.play(event.src);
+}
+</script>
 <marquee class="m1" behavior="scroll" direction="up" scrolldelay="0"> <br>
 <img src="/images/corona.webp" height="30px" width="30px"><br><br>
 <img src="/images/corona.webp" height="30px" width="30px"><br><br>
@@ -163,12 +179,6 @@ function carousel() {
   if (myIndex > x.length) {myIndex = 1}    
   x[myIndex-1].style.display = "block";  
   setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-function playSound() {
-  let sound = document.getElementById("audioId");
-  sound.currentTime = 0;
-  sound.loop = true; //if you want it to restart playing automatically when it ends
-  sound.play();
 }
 </script>
 
